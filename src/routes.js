@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 export default props => {
   const { routes } = props;

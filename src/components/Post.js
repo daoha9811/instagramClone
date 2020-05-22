@@ -36,13 +36,12 @@ export default props => {
         height="250"
         src={img}
         style={{ cursor: "pointer", width: "100%" }}
+        alt="post-img"
       />
       <Modal
         title={modalTitle(userName)}
         visible={isModalVisible}
         onCancel={handleCancel}
-        style={{ maxWidth: "70%" }}
-        width="70%"
         footer={null}
       >
         <PostModal postId={id} />

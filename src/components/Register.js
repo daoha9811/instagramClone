@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Checkbox, message } from "antd";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+import { Form, Input, Button, message } from "antd";
+import {  useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default () => {
@@ -26,7 +26,7 @@ export default () => {
         return;
       }
 
-      if (registerFetch.data.status == "success") {
+      if (registerFetch.data.status === "success") {
         message.success({ content: "dang ky thang cong", key });
         history.push("/authen");
       }

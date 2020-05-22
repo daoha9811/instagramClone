@@ -1,6 +1,6 @@
-import React, { Component, useState, useEffect, Fragment } from "react";
-import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 
 
 export default HocComponent => (props) => {

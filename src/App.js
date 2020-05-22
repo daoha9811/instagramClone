@@ -1,8 +1,11 @@
 //https://glitch.com/~snowy-cuboid-vulcanodon -api
-import React, { Component, useState, useEffect } from "react";
+import React from "react";
 import Routers from "./routes";
 import "antd/dist/antd.css";
 import "./App.css";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { Layout } from "antd";
 
 import HeaderMenu from "./components/header";
@@ -10,8 +13,9 @@ import Explore from "./components/Explore";
 import Authen from "./components/Authen";
 import Register from "./components/Register";
 import Infor from "./components/Infor";
+import { Container } from 'reactstrap';
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import {
   HomeOutlined,
   CompassOutlined,
@@ -96,9 +100,11 @@ const App = props => {
           >
             <HeaderMenu routePaths={routePaths} />
           </Header>
-          <Content style={{ padding: "0 50px", marginTop: "30px" }}>
-            <Routers routes={routes} />
-          </Content>
+          <Container>
+            <Content style={{ padding: "0 50px", marginTop: "30px" }}>
+              <Routers routes={routes} />
+            </Content>
+          </Container>
         </Layout>
       </Router>
     </div>

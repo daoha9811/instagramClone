@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
@@ -18,16 +18,7 @@ export default () => {
 
       const loginFetch = await axios.post(
         "https://snowy-cuboid-vulcanodon.glitch.me/api/authen",
-        values,
-        {
-          onUploadProgress: progressEvent => {
-            var percentCompleted = Math.round(
-              progressEvent.loaded / (progressEvent.total * 100)
-            );
-            console.log("--");
-            console.log(`${percentCompleted} %`);
-          }
-        }
+        values
       );
 
       if (loginFetch.data.errors) {

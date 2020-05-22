@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.1.0",
+    "antd": "^4.2.4",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "dotenv": "^8.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.1",
-    "antd": "^4.2.4",
-    "@ant-design/icons": "^4.1.0",
-    "reactstrap": "^8.4.1",
     "react-router-dom": "^5.2.0",
-    "axios": "^0.19.2"
+    "react-scripts": "^3.0.1",
+    "reactstrap": "^8.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Comment, List, Avatar, Skeleton, message, Spin } from "antd";
+import { List, Avatar, Skeleton, message, Spin } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import axios from "axios";
 
@@ -99,7 +99,7 @@ export default props => {
                 ? detailPost.img
                 : "https://res.cloudinary.com/daoha/image/upload/v1588060705/sample.jpg"
             }
-            width="560px"
+            alt="post-img"
           />
         </div>
         <div className="avatar-modal_comment">

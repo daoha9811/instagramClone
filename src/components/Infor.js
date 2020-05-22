@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Avatar, Menu, Layout, Spin, message, Skeleton, Button } from "antd";
 import axios from "axios";
 import AuthenHoc from "./AuthenHoc";
-import { HomeOutlined, HeartOutlined, UserOutlined } from "@ant-design/icons";
 import Post from "./Post";
 import InforUpload from "./InforUpload";
 
@@ -10,8 +9,7 @@ import {
   useHistory,
   Switch,
   Route,
-  Link,
-  useRouteMatch
+  Link
 } from "react-router-dom";
 
 const { Header, Content } = Layout;
@@ -20,7 +18,7 @@ const Infor = props => {
   
   let history = useHistory();
     
-  let { path, url } = useRouteMatch();
+  // let { path, url } = useRouteMatch();
 
   const [ApiFetch, setApi] = useState("");
   const [spinning, setSpinning] = useState(false);

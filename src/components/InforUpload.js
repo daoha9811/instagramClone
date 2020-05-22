@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Upload, Button, message } from "antd";
 
 import { UploadOutlined } from "@ant-design/icons";
@@ -11,11 +11,11 @@ export default props => {
   const onChange = ({ file }) => {
     const key = "postUpload";
 
-    if (file.status == "uploading") {
+    if (file.status === "uploading") {
       message.loading({ content: "Uploading...", key });
     }
 
-    if (file.status == "done") {
+    if (file.status === "done") {
       if ((file.response.status = "success")) {
         message.success({ content: "Upload thanh cong", key });
         changeApi("post-upload");
