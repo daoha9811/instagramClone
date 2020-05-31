@@ -37,6 +37,8 @@ a {
   padding: 8px 0px;
   outline: none;
   border: none;
+  width: 100%;
+
 }
 
 .active-comment_button {
@@ -50,6 +52,19 @@ a {
   color: rgba(var(--d69,0,149,246),1);
 }
 
+@media (max-width: 576px) { 
+  
+  .ant-modal {
+    max-width: 378px;
+    width: 378px!important;
+  }
+
+  .avatar-modal_img > img {
+    max-width: 225px;
+    width: 225px!important;
+  }
+
+ }
 
  @media (min-width: 768px) { 
     .ant-modal {
