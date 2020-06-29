@@ -5,6 +5,18 @@ a {
   text-decoration: none!important;
 }
 
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-bar_borderBottom {
  border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
 }
