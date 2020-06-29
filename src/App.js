@@ -13,6 +13,8 @@ import Explore from "./components/Explore";
 import Authen from "./components/Authen";
 import Register from "./components/Register";
 import Infor from "./components/Infor";
+import NotFound from "./components/NotFound";
+import HomeComponent from './components/HomeComponent';
 import { Container } from 'reactstrap';
 
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -28,7 +30,7 @@ const { Header, Content } = Layout;
 const routes = [
   {
     path: "/",
-    component: "",
+    component: <HomeComponent />,
     exact: true
   },
   {
@@ -53,14 +55,14 @@ const routes = [
   },
   {
     path: "*",
-    component: ""
+    component: <NotFound />
   }
 ];
 
 const routePaths = [
   {
     component: (
-      <Link to="/home">
+      <Link to="/">
         <HomeOutlined style={{ fontSize: "20px" }} />
       </Link>
     )
