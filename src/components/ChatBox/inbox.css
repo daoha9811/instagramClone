@@ -1,0 +1,118 @@
+.inbox_z {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.Friends_z {
+    border: 1px solid;
+    border-right: none;
+}
+
+.Friends__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+    padding-bottom: 0;
+    border-bottom: 1px solid;
+    margin-top: 10px;
+}
+
+.List__z {
+   width: 300px;
+   height: 500px;
+   overflow: hidden auto;
+}
+
+.Friends_list {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.inbox_friend_avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.inbox__text {
+    margin-left: 10px;
+}
+
+
+.Chatbox_z {
+    border: 1px solid;
+}
+
+.Chatbox__header {
+    margin-top: 15px;
+    border-bottom: 1px solid;
+}
+
+h6.Chatbox__username {
+    text-align: center;
+}
+
+.chatbox__history {
+    height: 100%;
+    width: 100%;
+    height: 450px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.vt__min {
+    min-width: 0;
+    min-height: 0;
+}
+
+.message {
+    color: white;
+    padding: 12px 20px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    flex-direction: 1 1 auto;
+    position: relative;
+    margin: 20px 30px 20px;
+}
+
+.orther-message {
+    background-color: #94c2ed;
+    float: right;
+}
+
+.orther-message:after {
+    border-bottom-color: #94c2ed;
+    left: 93%;
+}
+
+  
+.my-message {
+    background-color: #86bb71;
+    float: left;
+  }
+
+
+.Input_z {
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: initial;
+}
+
+input.chatbox__inbox {
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    font-size: 16px;
+    outline: none;
+}

@@ -15,6 +15,10 @@ import Register from "./components/Register";
 import Infor from "./components/Infor";
 import NotFound from "./components/NotFound";
 import HomeComponent from './components/HomeComponent';
+
+//Chat box
+import Inbox from './components/ChatBox/Inbox';
+
 import { Container } from 'reactstrap';
 
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -22,7 +26,8 @@ import {
   HomeOutlined,
   CompassOutlined,
   HeartOutlined,
-  UserOutlined
+  UserOutlined,
+  MailTwoTone
 } from "@ant-design/icons";
 
 const { Header, Content } = Layout;
@@ -51,6 +56,11 @@ const routes = [
   {
     path: "/infor",
     component: <Infor />,
+    exact: false
+  },
+  {
+    path: "/inbox",
+    component: <Inbox />,
     exact: false
   },
   {
@@ -85,6 +95,13 @@ const routePaths = [
     component: (
       <Link to={`/infor`}>
         <UserOutlined style={{ fontSize: "20px" }} />
+      </Link>
+    )
+  },
+  {
+    component: (
+      <Link to={`/inbox`}>
+        <MailTwoTone style={{ fontSize: "20px" }} />
       </Link>
     )
   }
