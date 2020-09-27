@@ -11,6 +11,10 @@ a {
   align-items: center;
 }
 
+.inbox_z .ant-spin-nested-loading {
+  flex-grow: 1;
+}
+
 .not-found {
   display: flex;
   justify-content: center;

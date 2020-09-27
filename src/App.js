@@ -13,6 +13,7 @@ import Explore from "./components/Explore";
 import Authen from "./components/Authen";
 import Register from "./components/Register";
 import Infor from "./components/Infor";
+import UserInfor from "./components/UserInfor";
 import NotFound from "./components/NotFound";
 import HomeComponent from './components/HomeComponent';
 
@@ -56,6 +57,11 @@ const routes = [
   {
     path: "/infor",
     component: <Infor />,
+    exact: false
+  },
+  {
+    path: "/user/:id",
+    component: <UserInfor />,
     exact: false
   },
   {

@@ -22,7 +22,7 @@ export default props => {
         <Breadcrumb.Item>
           <span style={{ fontWeight: "700" }}>{userName}</span>
         </Breadcrumb.Item>
-        <Breadcrumb.Item href="">
+        <Breadcrumb.Item>
           <span style={{ color: "#0095f6" }}>Theo Doi</span>
         </Breadcrumb.Item>
       </Breadcrumb>

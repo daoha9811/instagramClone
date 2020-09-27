@@ -32,6 +32,8 @@ export default () => {
       );
       sessionStorage.setItem("userName", loginFetch.data.user.name);
 
+      sessionStorage.setItem("userId", loginFetch.data.user._id);
+
       message.success({ content: "Dang nhap thang cong", key });
 
       history.push("/explore");

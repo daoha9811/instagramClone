@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Breadcrumb } from "antd";
+import { Link } from "react-router-dom";
 import PostModal from "./PostModal";
 
-export default props => {
-  
-  const {img, id, userName} = props;
-  
+export default (props) => {
+  const { img, id, userName, userId } = props;
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -16,11 +16,13 @@ export default props => {
     setIsModalVisible(false);
   };
 
-  const modalTitle = userName => {
+  const modalTitle = (userName) => {
     return (
       <Breadcrumb separator="•">
         <Breadcrumb.Item>
-          <span style={{ fontWeight: "700" }}>{userName}</span>
+          <Link to={`/user/${userId}`}>
+            <span style={{ fontWeight: "700" }}>{userName}</span>
+          </Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item href="">
           <span style={{ color: "#0095f6" }}>Theo Doi</span>
