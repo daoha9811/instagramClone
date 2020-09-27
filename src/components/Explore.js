@@ -19,6 +19,8 @@ const Explore = props => {
         `https://snowy-cuboid-vulcanodon.glitch.me/api/allposts`
       );
 
+      console.log(posts);
+
       if (posts.data.errors) {
         message.error(posts.data.errors);
       } else {
@@ -38,7 +40,7 @@ const Explore = props => {
   const convertPosts = [...Posts].reverse().map((post, index) => {
     return (
       <Col key={index} md={6} lg={6} xs={12}>
-        <Post id={post._id} img={post.img} userName={post.userName} />
+        <Post id={post._id} img={post.img} userName={post.userName} userId={post.userId} />
       </Col>
     );
   });

@@ -44,6 +44,7 @@
 
 .Chatbox_z {
     border: 1px solid;
+    flex-grow: 1;
 }
 
 .Chatbox__header {
@@ -82,7 +83,6 @@ h6.Chatbox__username {
 
 .orther-message {
     background-color: #94c2ed;
-    float: right;
 }
 
 .orther-message:after {
@@ -93,7 +93,6 @@ h6.Chatbox__username {
   
 .my-message {
     background-color: #86bb71;
-    float: left;
   }
 
 
