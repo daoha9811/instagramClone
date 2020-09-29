@@ -2,15 +2,15 @@ import React from "react";
 
 import { Form, Input, Button, Checkbox, message } from "antd";
 import Icon from "@ant-design/icons/lib/components/Icon";
-import { SearchOutlined } from "@ant-design/icons";
+import { FormOutlined } from "@ant-design/icons";
 
 export default ({ data, setCurrentConverstation }) => {
   const currentUserId = sessionStorage.getItem('userId');
   return (
     <div className="Friends_z">
       <div className="Friends__header">
-        <h6>Firends</h6>
-        <SearchOutlined width="10" />
+        <div className="Text_center Bold">Firends</div>
+        <FormOutlined width="10" style={{fontSize: '20px', cursor: "pointer"}} />
       </div>
       <div className="List__z">
         <div className="Z__list">

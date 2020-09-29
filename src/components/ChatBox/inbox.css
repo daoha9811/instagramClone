@@ -4,18 +4,33 @@
     width: 100%;
 }
 
+.Text_center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.Bold {
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-style: initial;
+}
+
 .Friends_z {
-    border: 1px solid;
+    border: 1px solid rgba(var(--b6a,219,219,219),1);
     border-right: none;
 }
 
 .Friends__header {
     display: flex;
     justify-content: space-between;
-    padding: 5px 5px;
     padding-bottom: 0;
-    border-bottom: 1px solid;
-    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+    padding-top: 13px;
+    padding-bottom: 13px;
+    display: flex;
 }
 
 .List__z {
@@ -29,6 +44,7 @@
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .inbox_friend_avatar {
@@ -39,21 +55,30 @@
 
 .inbox__text {
     margin-left: 10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
 }
 
 
 .Chatbox_z {
-    border: 1px solid;
+    border: 1px solid rgba(var(--b6a,219,219,219),1);
     flex-grow: 1;
 }
 
 .Chatbox__header {
-    margin-top: 15px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+    padding-top: 13px;
+    padding-bottom: 13px;
+    display: flex;
+    margin-right: 10p;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-h6.Chatbox__username {
+.Chatbox__username {
     text-align: center;
+    flex: 1;
 }
 
 .chatbox__history {
@@ -74,11 +99,22 @@ h6.Chatbox__username {
     padding: 12px 20px;
     line-height: 26px;
     font-size: 16px;
-    border-radius: 7px;
+    border-radius: 25px;
     margin-bottom: 30px;
     flex-direction: 1 1 auto;
     position: relative;
     margin: 20px 30px 20px;
+    max-width: 450px;
+}
+
+.Sent {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.Recive {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .orther-message {
@@ -97,14 +133,12 @@ h6.Chatbox__username {
 
 
 .Input_z {
-    /* width: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: initial;
+    border-top: 1px solid rgba(var(--b6a,219,219,219),1);
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 input.chatbox__inbox {

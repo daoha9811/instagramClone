@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox, message, Spin } from "antd";
 import { getConverstationById } from "../../service";
 import { useRequest } from "@umijs/hooks";
-import { SendOutlined } from "@ant-design/icons";
+import { SendOutlined, InfoCircleOutlined } from "@ant-design/icons";
+
 
 export default ({ currentConvertation, sendMess, messages }) => {
   const currentUser = sessionStorage.getItem("userId");
@@ -39,21 +40,26 @@ export default ({ currentConvertation, sendMess, messages }) => {
     <Spin spinning={loading} >
       <div className="Chatbox_z">
         <div className="Chatbox__header">
-          <h6 className="Chatbox__username">Dog</h6>
+          <div className="Chatbox__username Bold">Dog</div>
+          <InfoCircleOutlined width="10" style={{fontSize: '20px', cursor: "pointer"}} />
         </div>
-        <div className="chatbox__history vt__min">
+        <div className="chatbox__history">
           {data?.data &&
             data?.data?.message?.converstation?.map((conver) => {
               if (conver?.fromId === currentUser) {
                 return (
-                  <div className="message my-message">
-                    <span>{conver?.message}</span>
+                  <div className="Recive">
+                    <div className="message my-message">
+                      <div>{conver?.message}</div>
+                    </div>
                   </div>
                 );
               } else {
                 return (
-                  <div className="message orther-message">
-                    <span>{conver?.message}</span>
+                  <div className="Sent">
+                    <div className="message orther-message">
+                      <div>{conver?.message}</div>
+                    </div>
                   </div>
                 );
               }
@@ -62,13 +68,13 @@ export default ({ currentConvertation, sendMess, messages }) => {
         <div className="chatbox__input">
           <div className="Input_z">
             <input
-              value={value}
+              value={value || ''}
               onChange={handleOnChangle}
               type="text"
               className="chatbox__inbox"
             ></input>
-            <SendOutlined
-              style={{ fontSize: "20px" }}
+            <SendOutlined 
+              style={{ fontSize: "20px"}}
               onClick={handleSendMess}
             />
           </div>
