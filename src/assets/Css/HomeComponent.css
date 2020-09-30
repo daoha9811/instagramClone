@@ -1,0 +1,104 @@
+.home{
+    margin-top: 100px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  .title{
+    display: flex;
+    justify-content: space-between;
+  
+  
+  }
+  .name{
+    display: flex;
+    margin-left: 10px;
+  }
+  .name > p{
+    margin: 0;
+  }
+  .name > img{
+    border-radius: 50%;
+    margin-right: 7px;
+    border: brown solid 2px;
+    padding: 2px;
+  
+  }
+  .title > div{
+    margin: 15px;
+  }
+  .imagePosted {
+  
+   width: 100%;
+  }
+  
+  .main {
+    max-width: 614px;
+    border: 1px solid #ced4da;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  .emotion{
+    display: flex;
+    justify-content: space-between;
+  }
+  .emotion > div{
+    margin: 10px;
+  }
+  .heart > button {
+    margin-right: 10px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
+  }
+  
+  
+  .comment p{
+    display: inline-flex;
+    margin-left: 10px;
+  
+  }
+  .comment p:first-child{
+    font-weight: bold;
+  
+  }
+  .comment p:last-child{
+    color: rgb(54, 54, 54);
+  }
+  .like p{
+    margin-left: 10px;
+    color: rgb(54, 54, 54);
+  }
+  .react{
+    text-align: left;
+  }
+  .form-comment{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .form-comment input{
+   width: 100%;
+   margin-left: 10px;
+   border: none !important;
+   outline: none;
+   background-color: transparent;
+   font-size: 14px;
+   line-height: 18px;
+  
+  }
+  .form-comment button{
+    margin-right: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #0095f6;
+    opacity: 0.3;
+  }
+  .add-comment{
+    border-top: 1px solid #ced4da;
+    padding: 15px 0;
+    font-size: 14px;
+    line-height: 18px;
+  }
