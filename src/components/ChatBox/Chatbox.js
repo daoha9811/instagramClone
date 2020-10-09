@@ -11,6 +11,8 @@ export default ({ currentConvertation, sendMess, messages }) => {
 
   const [value, setValue] = useState();
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const { run, loading, data } = useRequest(getConverstationById, {
     manual: true,
   });
@@ -71,7 +73,7 @@ export default ({ currentConvertation, sendMess, messages }) => {
               value={value || ''}
               onChange={handleOnChangle}
               type="text"
-              className="chatbox__inbox"
+              className="chatbox__inbox"             
             ></input>
             <SendOutlined 
               style={{ fontSize: "20px"}}

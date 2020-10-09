@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Avatar, Menu, Layout, Spin, message, Skeleton, Button } from "antd";
+import { Row, Col, Avatar, Menu, Layout, Spin, message, Skeleton, Button, Modal } from "antd";
 import axios from "axios";
 import AuthenHoc from "./AuthenHoc";
 import Post from "./Post";
@@ -9,7 +9,7 @@ import {
   useHistory,
   Switch,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
 
 const { Header, Content } = Layout;
@@ -17,7 +17,7 @@ const { Header, Content } = Layout;
 const Infor = props => {
   
   let history = useHistory();
-    
+
   // let { path, url } = useRouteMatch();
 
   const [ApiFetch, setApi] = useState("");
@@ -117,9 +117,9 @@ const Infor = props => {
               </div>
               <div className="infor-count_detail">
                 <span style={{ marginRight: "20px" }}>0 bai viet</span>
-                <span style={{ marginRight: "20px" }}>1 nguoi theo doi</span>
-                <span style={{ marginRight: "20px" }}>
-                  Dang theo doi 1 nguoi
+                <span style={{ marginRight: "20px", cursor:"pointer" }}>1 người theo dõi</span>
+                <span style={{ marginRight: "20px", cursor:"pointer"}}>
+                  Đang theo dõi 1 người
                 </span>
               </div>
             </div>
@@ -155,6 +155,7 @@ const Infor = props => {
             </Content>
           </Layout>
         </div>
+    
       </Skeleton>
     </div>
   );

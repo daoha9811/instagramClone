@@ -1,17 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Form, Input, Button, Checkbox, message } from "antd";
+import { Form, Input, Button, Checkbox, message, Modal, List, Avatar, Skeleton } from "antd";
 import Icon from "@ant-design/icons/lib/components/Icon";
-import { FormOutlined } from "@ant-design/icons";
+import { FormOutlined, AudioOutlined } from "@ant-design/icons";
 
 export default ({ data, setCurrentConverstation }) => {
+  const { Search } = Input;
+
+  const user = [
+    {
+      title: 'Ant Design Title 1',
+    },
+    {
+      title: 'Ant Design Title 2',
+    },
+    {
+      title: 'Ant Design Title 3',
+    },
+    {
+      title: 'Ant Design Title 4',
+    },
+  ];
+
   const currentUserId = sessionStorage.getItem('userId');
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  
   return (
     <div className="Friends_z">
       <div className="Friends__header">
         <div className="Text_center Bold">Firends</div>
-        <FormOutlined width="10" style={{fontSize: '20px', cursor: "pointer"}} />
+        <FormOutlined onClick={showModal} width="10" style={{fontSize: '20px', cursor: "pointer"}} />
       </div>
+      <Modal
+          title="Bạn bè"
+          visible={isModalVisible}
+          style={{ maxWidth: "70%", maxHeight:"300", overflowY: "auto" }}
+          width="40%"
+          onCancel={handleCancel}
+          footer={null}
+        >
+        <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
+        
+        <List
+        itemLayout="horizontal"
+        dataSource={user}
+        renderItem={item => (
+          <List.Item>
+            <List.Item.Meta
+              avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+            />
+            <List.Item
+            actions={[<a key="list-loadmore-edit" style={{color:"#007bff", fontWeight:"bold"}}>Nhắn tin</a>]}
+            ></List.Item>
+          </List.Item>
+         )}
+        />
+      </Modal>
       <div className="List__z">
         <div className="Z__list">
           {data?.messages?.map((mess) => {
