@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col, Avatar, Menu, Layout, Spin, message, Skeleton, Button, Modal } from "antd";
+import React, { useState, useEffect, useCallback } from "react";
+import {
+  Row,
+  Col,
+  Avatar,
+  Menu,
+  Layout,
+  Spin,
+  message,
+  Skeleton,
+  Button,
+  Modal,
+} from "antd";
 import axios from "axios";
 import AuthenHoc from "./AuthenHoc";
 import Post from "./Post";
 import InforUpload from "./InforUpload";
+import FollowModal from "./FollowModal";
 
-import {
-  useHistory,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import { useHistory, Switch, Route, Link } from "react-router-dom";
 
 const { Header, Content } = Layout;
 
-const Infor = props => {
-  
+const Infor = (props) => {
   let history = useHistory();
 
   // let { path, url } = useRouteMatch();
@@ -25,9 +31,12 @@ const Infor = props => {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [followIds, setFollowIds] = useState([]);
+
+  const [followModalVisible, setFollowModalVisible] = useState(false);
 
   useEffect(() => {
-    (async function() {
+    (async function () {
       const token = sessionStorage.getItem("token") || "";
 
       const response = await axios.get(
@@ -43,12 +52,12 @@ const Infor = props => {
       }
     })();
   }, [ApiFetch]);
-  
-  const changeApi = status => {
-    setApi(status)
-  }
 
-  const onChange = async e => {
+  const changeApi = (status) => {
+    setApi(status);
+  };
+
+  const onChange = async (e) => {
     const avatar = e.target.files[0];
 
     let formData = new FormData();
@@ -68,11 +77,25 @@ const Infor = props => {
       setSpinning(false);
     }
   };
-  
+
   const onSignOut = () => {
     sessionStorage.clear();
     history.push("/authen");
-  }
+  };
+
+  const handleFollowersClick = useCallback((followers) => {
+    setFollowModalVisible(true);
+    setFollowIds(followers);
+  }, []);
+
+  const handleFollowsClick = useCallback((follows) => {
+    setFollowModalVisible(true);
+    setFollowIds(follows);
+  }, []);
+
+  const onModalCancel = useCallback(() => {
+    setFollowModalVisible(false);
+  }, []);
 
   const convertPosts = [...posts].reverse().map((post, index) => {
     return (
@@ -111,15 +134,25 @@ const Infor = props => {
           </Col>
           <Col xs={15} offset={3} md={14} lg={14}>
             <div>
-              <div className="infor-user_control" style={{display: "flex"}}>
+              <div className="infor-user_control" style={{ display: "flex" }}>
                 <h2>{user ? user.name : ""}</h2>
-                <Button onClick={onSignOut} style={{marginLeft: "20px"}}>Dang xuat</Button>
+                <Button onClick={onSignOut} style={{ marginLeft: "20px" }}>
+                  Dang xuat
+                </Button>
               </div>
               <div className="infor-count_detail">
                 <span style={{ marginRight: "20px" }}>0 bai viet</span>
-                <span style={{ marginRight: "20px", cursor:"pointer" }}>1 người theo dõi</span>
-                <span style={{ marginRight: "20px", cursor:"pointer"}}>
-                  Đang theo dõi 1 người
+                <span
+                  onClick={() => handleFollowersClick(user?.followers)}
+                  style={{ marginRight: "20px", cursor: "pointer" }}
+                >
+                  {(user && user?.followers?.length) || 0} người theo dõi
+                </span>
+                <span
+                  onClick={() => handleFollowsClick(user?.follows)}
+                  style={{ marginRight: "20px", cursor: "pointer" }}
+                >
+                  Dang theo doi {(user && user?.follows?.length) || 0} nguoi
                 </span>
               </div>
             </div>
@@ -148,15 +181,17 @@ const Infor = props => {
                 </Route>
                 <Route exact path={`/infor/upload`}>
                   <div style={{ textAlign: "center" }}>
-                    <InforUpload changeApi={changeApi}/>
+                    <InforUpload changeApi={changeApi} />
                   </div>
                 </Route>
               </Switch>
             </Content>
           </Layout>
         </div>
-    
       </Skeleton>
+      {followModalVisible && (
+        <FollowModal onClose={onModalCancel} ids={followIds} visible={followModalVisible} />
+      )}
     </div>
   );
 };

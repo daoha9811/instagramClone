@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Modal, Breadcrumb } from "antd";
-import PostModal from "./PostModal";
+import PostModal from "./PostModal";d
+import { createFollow } from '../service';
+import { useRequest } from '@umijs/hooks';
 
 export default props => {
   
   const {img, id, userName} = props;
   
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const asyncFollow = useRequest(createFollow, {
+    manual: true
+  })
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -16,6 +22,11 @@ export default props => {
     setIsModalVisible(false);
   };
 
+  const handleFollow = useCallback((e) => {
+    // asyncFollow.run();
+    console.log('heres');
+  },[])
+
   const modalTitle = userName => {
     return (
       <Breadcrumb separator="•">
@@ -23,7 +34,7 @@ export default props => {
           <span style={{ fontWeight: "700" }}>{userName}</span>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <span style={{ color: "#0095f6" }}>Theo Doi</span>
+          <span onClick={(e)=>handleFollow(e)} style={{ color: "#0095f6" }}>Theo Doi</span>
         </Breadcrumb.Item>
       </Breadcrumb>
     );

@@ -127,9 +127,9 @@ const UserInfor = (props) => {
               </div>
               <div className="infor-count_detail">
                 <span style={{ marginRight: "20px" }}>0 bai viet</span>
-                <span style={{ marginRight: "20px" }}>1 nguoi theo doi</span>
+                <span style={{ marginRight: "20px" }}>{ user && user?.followers?.length || 0 } nguoi theo doi</span>
                 <span style={{ marginRight: "20px" }}>
-                  Dang theo doi 1 nguoi
+                  Dang theo doi { user && user?.follows?.length || 0 }  nguoi
                 </span>
               </div>
             </div>

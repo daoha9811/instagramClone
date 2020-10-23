@@ -24,3 +24,31 @@ export const createConverStation = (id) => {
     }
   );
 };
+
+export const getAllFollowPost = () => {
+  const token = sessionStorage.getItem("token") || "";
+  axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
+  return axios.get(
+    `https://snowy-cuboid-vulcanodon.glitch.me/api/followerPost`
+  );
+}
+
+export const getUserInfor = (userId) => {
+  const token = sessionStorage.getItem("token") || "";
+  axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
+  return axios.get(
+    `https://snowy-cuboid-vulcanodon.glitch.me/api/user-by-id/${userId}`
+  );
+}
+
+export const createFollow = (id) => {
+  const token = sessionStorage.getItem("token") || "";
+  axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
+  return axios.post(
+    `https://snowy-cuboid-vulcanodon.glitch.me/api/follow`,
+    {
+      id: id,
+    }
+  );
+}
+
