@@ -1,10 +1,32 @@
-import React from 'react';
-import EmptyImg from '../assets/images/empty.svg';
+import React, { useState, useEffect, useCallback } from "react";
+import EmptyImg from "../assets/images/empty.svg";
+import { getAllFollowPost } from "../service";
+import { useRequest } from "@umijs/hooks";
+import AuthenHoc from "./AuthenHoc";
+import HomePostComponent from "./HomePostComponent";
+import "../assets/Css/HomeComponent.css";
 
+const HomePage = () => {
+  const asyncGetFollowPost = useRequest(getAllFollowPost, {
+    manual: true,
+  });
 
-export default () => {
-    return <div className="home-page">
-        <img alt="empty" src={EmptyImg} width="200" height="200" />
-        <span>Hiện tại tính năng đang được cập nhập mời sử dụng tính năng khác</span>
-    </div>
-}
+  useEffect(() => {
+    asyncGetFollowPost.run();
+  }, []);
+
+  const renderPost = useCallback(
+    (posts) => {
+      return posts?.map((post) => <HomePostComponent post={post} />);
+    },
+    [asyncGetFollowPost?.data]
+  );
+
+  return <div>
+      {
+        asyncGetFollowPost?.data && renderPost(asyncGetFollowPost?.data?.data)
+       }
+  </div>;
+};
+
+export default AuthenHoc(HomePage);

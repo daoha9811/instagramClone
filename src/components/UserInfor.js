@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -9,20 +9,21 @@ import {
   message,
   Skeleton,
   Button,
-  Modal,
 } from "antd";
 import axios from "axios";
-import AuthenHoc from "./AuthenHoc";
 import Post from "./Post";
 import InforUpload from "./InforUpload";
-import FollowModal from "./FollowModal";
 
-import { useHistory, Switch, Route, Link } from "react-router-dom";
+import {createConverStation} from '../service';
+
+import { useHistory, Switch, Route, Link, useParams } from "react-router-dom";
 
 const { Header, Content } = Layout;
 
-const Infor = (props) => {
+const UserInfor = (props) => {
   let history = useHistory();
+
+  const { id: userId } = useParams();
 
   // let { path, url } = useRouteMatch();
 
@@ -31,23 +32,18 @@ const Infor = (props) => {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [followIds, setFollowIds] = useState([]);
-
-  const [followModalVisible, setFollowModalVisible] = useState(false);
 
   useEffect(() => {
     (async function () {
-      const token = sessionStorage.getItem("token") || "";
-
       const response = await axios.get(
-        `https://snowy-cuboid-vulcanodon.glitch.me/api/user?token=${token}`
+        `https://snowy-cuboid-vulcanodon.glitch.me/api/user-by-id/${userId}`
       );
 
       if (response.data.errors) {
         message.error(response.data.errors);
       } else {
-        setUser(response.data.user);
-        setPosts(response.data.posts);
+        setUser(response?.data?.user);
+        setPosts(response?.data?.posts);
         setLoading(false);
       }
     })();
@@ -78,32 +74,21 @@ const Infor = (props) => {
     }
   };
 
-  const onSignOut = () => {
-    sessionStorage.clear();
-    history.push("/authen");
+  const onMessage = async () => {
+    const response = await createConverStation(userId);
+    if(response?.data?.status === "success") {
+      history.push('/inbox')
+    }
+
   };
 
-  const handleFollowersClick = useCallback((followers) => {
-    setFollowModalVisible(true);
-    setFollowIds(followers);
-  }, []);
-
-  const handleFollowsClick = useCallback((follows) => {
-    setFollowModalVisible(true);
-    setFollowIds(follows);
-  }, []);
-
-  const onModalCancel = useCallback(() => {
-    setFollowModalVisible(false);
-  }, []);
-
-  const convertPosts = [...posts].reverse().map((post, index) => {
+  const convertPosts = posts && posts.length >=1 ? [...posts].reverse().map((post, index) => {
     return (
       <Col key={index} md={6} lg={6} xs={12}>
         <Post id={post._id} img={post.img} userName={post.userName} />
       </Col>
     );
-  });
+  }) : [];
 
   return (
     <div className="person-infor">
@@ -136,23 +121,15 @@ const Infor = (props) => {
             <div>
               <div className="infor-user_control" style={{ display: "flex" }}>
                 <h2>{user ? user.name : ""}</h2>
-                <Button onClick={onSignOut} style={{ marginLeft: "20px" }}>
-                  Dang xuat
+                <Button onClick={onMessage} style={{ marginLeft: "20px" }}>
+                  Nhan tin
                 </Button>
               </div>
               <div className="infor-count_detail">
                 <span style={{ marginRight: "20px" }}>0 bai viet</span>
-                <span
-                  onClick={() => handleFollowersClick(user?.followers)}
-                  style={{ marginRight: "20px", cursor: "pointer" }}
-                >
-                  {(user && user?.followers?.length) || 0} người theo dõi
-                </span>
-                <span
-                  onClick={() => handleFollowsClick(user?.follows)}
-                  style={{ marginRight: "20px", cursor: "pointer" }}
-                >
-                  Dang theo doi {(user && user?.follows?.length) || 0} nguoi
+                <span style={{ marginRight: "20px" }}>{ user && user?.followers?.length || 0 } nguoi theo doi</span>
+                <span style={{ marginRight: "20px" }}>
+                  Dang theo doi { user && user?.follows?.length || 0 }  nguoi
                 </span>
               </div>
             </div>
@@ -163,37 +140,22 @@ const Infor = (props) => {
             <Header style={{ background: "none", textAlign: "center" }}>
               <Menu mode="horizontal">
                 <Menu.Item>
-                  <Link to={`/infor`}>Bai Viet</Link>
-                </Menu.Item>
-                <Menu.Item>
-                  <Link to={`/infor/upload`}>Upload</Link>
+                  <span>Bai Viet</span>
                 </Menu.Item>
               </Menu>
             </Header>
             <Content style={{ marginTop: "30px" }}>
-              <Switch>
-                <Route exact path={`/infor`}>
-                  {convertPosts.length > 0 ? (
-                    <Row gutter={[10, 20]}>{convertPosts}</Row>
-                  ) : (
-                    <h1 style={{ textAlign: "center" }}>Ban chua co anh nao</h1>
-                  )}
-                </Route>
-                <Route exact path={`/infor/upload`}>
-                  <div style={{ textAlign: "center" }}>
-                    <InforUpload changeApi={changeApi} />
-                  </div>
-                </Route>
-              </Switch>
+              {convertPosts.length > 0 ? (
+                <Row gutter={[10, 20]}>{convertPosts}</Row>
+              ) : (
+                <h1 style={{ textAlign: "center" }}>Ban chua co anh nao</h1>
+              )}
             </Content>
           </Layout>
         </div>
       </Skeleton>
-      {followModalVisible && (
-        <FollowModal onClose={onModalCancel} ids={followIds} visible={followModalVisible} />
-      )}
     </div>
   );
 };
 
-export default AuthenHoc(Infor);
+export default UserInfor;
