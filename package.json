@@ -6,7 +6,7 @@
     "@ant-design/icons": "^4.1.0",
     "@umijs/hooks": "^1.9.3",
     "antd": "^4.2.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "dotenv": "^8.2.0",
     "react": "^16.8.6",
